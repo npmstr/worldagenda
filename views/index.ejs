@@ -3,9 +3,42 @@
   <head>
     <title><%= title %></title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
+    <script src="https://unpkg.com/ag-grid-community/dist/ag-grid-community.min.noStyle.js"></script>
+    <script src="https://unpkg.com/jquery@3.3.1/dist/jquery.js" charset="utf-8"></script>
+ <link rel="stylesheet" href="https://unpkg.com/ag-grid-community/dist/styles/ag-grid.css">
+ <link rel="stylesheet" href="https://unpkg.com/ag-grid-community/dist/styles/ag-theme-balham.css">
   </head>
   <body>
     <h1><%= title %></h1>
     <p>Welcome to <%= title %></p>
+    <p>Sessions:</p>
+    <div id="myGrid" style="height: 600px;width:500px;" class="ag-theme-balham"></div>
+    <script>
+      $(function(){
+
+        var sessions = JSON.parse('<%- sessions %>');
+        console.log(sessions);
+        var columnDefs = [
+          {headerName: "Title", field: "title"},
+          {headerName: "Session Type", field: "sessionType"},
+          {headerName: "MK Owner", field: "mkOwner"}
+        ];
+
+        // let the grid know which columns and what data to use
+        var gridOptions = {
+          columnDefs: columnDefs,
+          enableSorting: true,
+          enableFilter: true
+        };
+
+
+        // lookup the container we want the Grid to use
+        var eGridDiv = document.querySelector('#myGrid');
+
+        // create the grid passing in the div to use together with the columns & data we want to use
+        new agGrid.Grid(eGridDiv, gridOptions);
+        gridOptions.api.setRowData(sessions);
+      });
+    </script>
   </body>
 </html>
