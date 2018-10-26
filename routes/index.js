@@ -1,7 +1,12 @@
 var express = require('express');
 var router = express.Router();
 
-const base = require('airtable').base('appTwRhs5DXU070nz');
+var Airtable = require('airtable');
+Airtable.configure({
+    endpointUrl: 'https://api.airtable.com',
+    apiKey: 'keykZDdy48wboYjYZ'
+});
+var base = Airtable.base('appTwRhs5DXU070nz');
 
 var sessions = [];
 
