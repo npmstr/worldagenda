@@ -1,0 +1,15 @@
+# MSTR World Agenda Lister
+
+## Getting Started
+
+Create an environment variable for your Airtable API key.
+
+```
+$ export AIRTABLE_API_KEY=[insert API key here]
+```
+
+Give it a go!
+
+```
+npm start
+```
